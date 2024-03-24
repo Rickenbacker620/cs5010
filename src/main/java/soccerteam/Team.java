@@ -30,5 +30,14 @@ public class Team {
   }
 
   public void generateJerseyNumber() {
+    Set<Integer> assignJerseyNumbers=new HashSet<>();
+    Random random = new Random();
+    for(int i=0;i<players.size();i++){
+      int jerseyNumber;
+      do{
+        jerseyNumber = random.nextInt(20)+1;
+      }while (!assignJerseyNumbers.add(jerseyNumber));
+      players.get(i).setJerseyNumber(jerseyNumber);
+    }
   }
 }
