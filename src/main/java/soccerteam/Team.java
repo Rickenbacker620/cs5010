@@ -2,7 +2,10 @@ package soccerteam;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class Team {
   private List<Player> activePlayers = new ArrayList<>();
@@ -28,16 +31,28 @@ public class Team {
       benchPlayers.add(player);
     }
   }
-
   public void generateJerseyNumber() {
     Set<Integer> assignJerseyNumbers=new HashSet<>();
     Random random = new Random();
-    for(int i=0;i<players.size();i++){
+    for (Player player : players) {
       int jerseyNumber;
-      do{
-        jerseyNumber = random.nextInt(20)+1;
-      }while (!assignJerseyNumbers.add(jerseyNumber));
-      players.get(i).setJerseyNumber(jerseyNumber);
+      do {
+        jerseyNumber = random.nextInt(20) + 1;
+      } while (!assignJerseyNumbers.add(jerseyNumber));
+      player.setJerseyNumber(jerseyNumber);
     }
+  }
+  public void selectStartingLineup(){
+
+  }
+  public String getPlayerList(){
+    StringBuilder playerList = new StringBuilder();
+    for (Player player : players) {
+      playerList.append(player.getFirstName()).append(" ").append(player.getLastName()).append(" ").append(player.getJerseyNumber()).append("\n");
+    }
+    return playerList.toString();
+  }
+  public String getStartingLineup(){
+
   }
 }
