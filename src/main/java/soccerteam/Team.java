@@ -43,7 +43,16 @@ public class Team {
     }
   }
   public void selectStartingLineup(){
-
+    activePlayers.clear();
+    benchPlayers.clear();
+    players.sort(Comparator.comparingInt(Player::getSkillLevel).reversed());
+    for (int i=0;i<players.size();i++){
+      if(i<7&&activePlayers.size()<7){
+        activePlayers.add(players.get(i));
+      }else {
+        benchPlayers.add(players.get(i));
+      }
+    }
   }
   public String getPlayerList(){
     StringBuilder playerList = new StringBuilder();
