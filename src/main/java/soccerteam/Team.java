@@ -2,6 +2,7 @@ package soccerteam;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -78,11 +79,12 @@ public class Team {
     benchPlayers.clear();
     players.sort(Comparator.comparingInt(Player::getSkillLevel).reversed());
 
-    Map<Position, Integer> positionCount = Map.of(
-        Position.GOALIE, 1,
-        Position.DEFENDER, 2,
-        Position.MIDFIELDER, 2,
-        Position.FORWARD, 2);
+    // initialize the position count
+    Map<Position, Integer> positionCount = new HashMap<>();
+    positionCount.put(Position.GOALIE, 1);
+    positionCount.put(Position.DEFENDER, 2);
+    positionCount.put(Position.MIDFIELDER, 3);
+    positionCount.put(Position.FORWARD, 2);
 
     for (int i = 0; i < players.size(); i++) {
       Player currentPlayer = players.get(i);
