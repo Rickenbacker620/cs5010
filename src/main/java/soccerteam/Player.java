@@ -3,7 +3,7 @@ package soccerteam;
 import java.util.Date;
 
 /**
- * Player class.
+ * Class that describe a player
  */
 public class Player {
   private String firstName;
