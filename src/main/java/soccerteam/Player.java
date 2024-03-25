@@ -19,7 +19,7 @@ public class Player {
    * @param lastName is the last name of the player.
    * @param dateOfBirth is the date of birth of the player.
    * @param preferredPosition is the preferred position of the player.
-   * @param sillLevel is the skill level of the player.
+   * @param skillLevel is the skill level of the player.
    */
   public Player(String firstName, String lastName, Date dateOfBirth, Position preferredPosition, int skillLevel) {
     this.firstName = firstName;
