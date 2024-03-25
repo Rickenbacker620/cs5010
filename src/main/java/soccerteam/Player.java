@@ -21,12 +21,12 @@ public class Player {
    * @param preferredPosition is the preferred position of the player.
    * @param sillLevel is the skill level of the player.
    */
-  public Player(String firstName, String lastName, Date dateOfBirth, Position preferredPosition, int sillLevel) {
+  public Player(String firstName, String lastName, Date dateOfBirth, Position preferredPosition, int skillLevel) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.dateOfBirth = dateOfBirth;
     this.preferredPosition = preferredPosition;
-    this.skillLevel = sillLevel;
+    this.skillLevel = skillLevel;
   }
 
   /**
