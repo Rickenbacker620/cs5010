@@ -21,10 +21,13 @@ public class TeamTest {
   public void setUp() {
     // Initialize a list of players to use in the tests
     players = new ArrayList<>();
-    for (int i = 0; i < 15; i++) {
-      players.add(new Player("FirstName" + i, "LastName" + i, new Date(), Position.MIDFIELDER, i + 1));
+    for (int i = 1; i <= 5; i++) {
+      players.add(new Player("FirstNameGOALIE" + i, "LastNameGOALIE" + i, new Date(), Position.GOALIE, i));
+      players.add(new Player("FirstNameDEFENDER" + i, "LastNameDEFENDER" + i, new Date(), Position.DEFENDER, i));
+      players.add(new Player("FirstNameMIDFIELDER" + i, "LastNameMIDFIELDER" + i, new Date(), Position.DEFENDER, i));
+      players.add(new Player("FirstNameFORWARD" + i, "LastNameFORWARD" + i, new Date(), Position.FORWARD, i));
     }
-    team = new Team(15, players);
+    team = new Team(20, players);
     StringBuilder playerList = new StringBuilder();
     for (Player player : players) {
       playerList.append(player.getFirstName()).append(" ").append(player.getLastName()).append(" ").append(player.getJerseyNumber()).append("\n");
@@ -48,17 +51,27 @@ public class TeamTest {
     Team t = new Team(15, players);
     assertEquals(res, t.getPlayerList());
     List<Player> players2 = new ArrayList<>();
-
-    for (int i = 0; i < 21; i++) {
-      players2.add(new Player("FirstName" + i, "LastName" + i, new Date(), Position.MIDFIELDER, i + 1));
+    for (int i = 1; i <= 5; i++) {
+      players2.add(new Player("FirstNameGOALIE" + i, "LastNameGOALIE" + i, new Date(), Position.GOALIE, i));
+      players2.add(new Player("FirstNameDEFENDER" + i, "LastNameDEFENDER" + i, new Date(), Position.DEFENDER, i));
+      players2.add(new Player("FirstNameMIDFIELDER" + i, "LastNameMIDFIELDER" + i, new Date(), Position.DEFENDER, i));
+      players2.add(new Player("FirstNameFORWARD" + i, "LastNameFORWARD" + i, new Date(), Position.FORWARD, i));
     }
-    t = new Team(21, players2);
-    assertFalse(t.getPlayerList().contains("FirstName0") && t.getPlayerList().contains("LastName0"));
+    players2.add(new Player("FirstNameGOALIE6", "LastNameGOALIE6", new Date(), Position.GOALIE, 2));
+    players2.add(new Player("FirstNameDEFENDER6", "LastNameDEFENDER6", new Date(), Position.DEFENDER, 2));
+    players2.add(new Player("FirstNameMIDFIELDER6", "LastNameMIDFIELDER6", new Date(), Position.DEFENDER, 2));
+    players2.add(new Player("FirstNameFORWARD6", "LastNameFORWARD6", new Date(), Position.FORWARD, 2));
+    t = new Team(24, players2);
+    System.out.print(t.getPlayerList());
+    assertFalse(t.getPlayerList().contains("FirstNameGOALIE1") && t.getPlayerList().contains("LastNameGOALIE1"));
+    assertFalse(t.getPlayerList().contains("FirstNameDEFENDER1") && t.getPlayerList().contains("FirstNameDEFENDER1"));
+    assertFalse(t.getPlayerList().contains("FirstNameMIDFIELDER1") && t.getPlayerList().contains("FirstNameMIDFIELDER1"));
+    assertFalse(t.getPlayerList().contains("FirstNameFORWARD1") && t.getPlayerList().contains("FirstNameFORWARD1"));
   }
 
   @Test
   public void testAddPlayer() {
-    Player newPlayer = new Player("New", "Player", new Date(), Position.FORWARD, 16);
+    Player newPlayer = new Player("New", "Player", new Date(), Position.FORWARD, 5);
     team.addPlayer(newPlayer);
     assertTrue(team.getPlayerList().contains(newPlayer.getFirstName()) && team.getPlayerList().contains(newPlayer.getLastName()));
   }
