@@ -72,7 +72,7 @@ public class Team {
     for (int i=0;i<players.size();i++){
       if(i<7&&activePlayers.size()<7){
         activePlayers.add(players.get(i));
-      }else {
+      } else {
         benchPlayers.add(players.get(i));
       }
     }
@@ -90,7 +90,17 @@ public class Team {
     }
     return playerList.toString();
   }
-  public String getStartingLineup(){
 
+  /**
+   * Method to generate the list of start line players in string. In format of a space in between
+   * first name, last name, jersey number and a new line after each player
+   * @return string of start line players in the team
+   */
+  public String getStartingLineup(){
+    StringBuilder playerList = new StringBuilder();
+    for (Player player : activePlayers) {
+      playerList.append(player.getFirstName()).append(" ").append(player.getLastName()).append(" ").append(player.getJerseyNumber()).append("\n");
+    }
+    return playerList.toString();
   }
 }
