@@ -44,6 +44,7 @@ public class Team {
     } else {
       benchPlayers.add(player);
     }
+    players.add(player);
   }
 
   /**
