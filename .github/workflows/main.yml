@@ -1,0 +1,39 @@
+name: publish project
+on: push
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+
+      - name: Verify
+        run: mvn --batch-mode --update-snapshots verify
+
+      - name: Generate Graph
+        run: npx -p @mermaid-js/mermaid-cli mmdc -i docs/UML.mmd -o UML.pdf
+
+      - name: Zip target files for release
+        run: |
+          mkdir -p bundle/res
+          cp -r src/main/java bundle/src
+          cp -r src/test/java bundle/test
+          cp -r target/*.jar bundle/res
+          cp UML.pdf bundle/res
+          zip -r bundle.zip bundle/*
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: Bundle
+          name: Bundle
+          body: Bundled following the spec for cs5010
+          draft: false
+          prerelease: false
+          files: bundle.zip

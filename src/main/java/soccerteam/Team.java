@@ -105,7 +105,7 @@ public class Team {
     // fill the remaining position in the starting line with the highest skill level
     int unfilledPositions = 7 - activePlayers.size();
     for (int i = 0; i < unfilledPositions; i++) {
-      activePlayers.add(benchPlayers.removeFirst());
+      activePlayers.add(benchPlayers.remove(0));
     }
     players.sort(Comparator.comparing(Player::getLastName));
     activePlayers.sort(Comparator.comparing(Player::getLastName));

@@ -62,7 +62,6 @@ public class TeamTest {
     players2.add(new Player("FirstNameMIDFIELDER6", "LastNameMIDFIELDER6", new Date(), Position.DEFENDER, 2));
     players2.add(new Player("FirstNameFORWARD6", "LastNameFORWARD6", new Date(), Position.FORWARD, 2));
     t = new Team(24, players2);
-    System.out.print(t.getPlayerList());
     assertFalse(t.getPlayerList().contains("FirstNameGOALIE1") && t.getPlayerList().contains("LastNameGOALIE1"));
     assertFalse(t.getPlayerList().contains("FirstNameDEFENDER1") && t.getPlayerList().contains("FirstNameDEFENDER1"));
     assertFalse(t.getPlayerList().contains("FirstNameMIDFIELDER1") && t.getPlayerList().contains("FirstNameMIDFIELDER1"));

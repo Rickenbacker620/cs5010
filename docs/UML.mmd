@@ -1,0 +1,47 @@
+# UML Diagram for Project
+
+```mermaid
+classDiagram
+    class Player {
+        - firstName: String
+        - lastName: String
+        - dateOfBirth: Date
+        - preferredPosition: Position
+        - skillLevel: int
+        - jerseyNumber: int
+        + Player(firstName: String, lastName: String, dateOfBirth: Date, preferredPosition: Position, skillLevel: int)
+        + getFirstName() String
+        + setFirstName(firstName: String) void
+        + getLastName() String
+        + setLastName(lastName: String) void
+        + getDateOfBirth() Date
+        + setDateOfBirth(dateOfBirth: Date) void
+        + getPreferredPosition() Position
+        + setPreferredPosition(preferredPosition: Position) void
+        + getSkillLevel() int
+        + setSkillLevel(skillLevel: int) void
+        + getJerseyNumber() int
+        + setJerseyNumber(jerseyNumber: int) void
+        + toString() String
+    }
+    class Position {
+        <<enumeration>>
+        GOALIE
+        DENFENDER
+        MIDFIELDER
+        FORWARD
+    }
+    class Team {
+        - activePlayer: List~Player~
+        - benchPlayer: List~Player~
+        - players: List~Player~
+        + Team(size:int, players: List~Player~)
+        + addPlayer(player: Player) void
+        + generateJerseyNumbers() void
+        + selectStartingLineup() void
+        + getPlayersList() String
+        + getStartingLineup() String
+    }
+    Player "1..*" *-- "1" Team
+    Player "1" *-- "0..1" Position
+```
