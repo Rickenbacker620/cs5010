@@ -12,6 +12,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 11
+          distribution: 'adopt'
 
       - name: Verify
         run: mvn --batch-mode --update-snapshots verify
