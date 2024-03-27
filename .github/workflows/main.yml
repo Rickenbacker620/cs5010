@@ -1,6 +1,9 @@
 name: publish project
 on: push
 
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
