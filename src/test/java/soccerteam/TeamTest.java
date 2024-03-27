@@ -50,7 +50,7 @@ public class TeamTest {
 
   @Test
   public void testTeamConstructor() {
-    Team t = new Team(15, players);
+    Team t = new Team(20, players);
     assertEquals(res, t.getPlayerList());
     List<Player> players2 = new ArrayList<>();
     for (int i = 1; i <= 5; i++) {
@@ -86,17 +86,21 @@ public class TeamTest {
   public void testGenerateJerseyNumber() {
     team.generateJerseyNumber();
     String playerList = team.getPlayerList();
-    // This test ensures jersey numbers are generated and assigned but cannot
-    // directly verify uniqueness or correctness
-    assertFalse(playerList.contains(" 0\n"));
+    assertTrue(playerList.contains(" 1\n") && playerList.contains(" 2\n") &&
+            playerList.contains(" 3\n") && playerList.contains(" 4\n") && playerList.contains(" 5\n") &&
+            playerList.contains(" 6\n") && playerList.contains(" 7\n") && playerList.contains(" 8\n") &&
+            playerList.contains(" 9\n") && playerList.contains(" 10\n") && playerList.contains(" 11\n") &&
+            playerList.contains(" 12\n") && playerList.contains(" 13\n") && playerList.contains(" 14\n") &&
+            playerList.contains(" 15\n") && playerList.contains(" 16\n") && playerList.contains(" 17\n") &&
+            playerList.contains(" 18\n") && playerList.contains(" 19\n") && playerList.contains(" 20\n"));
   }
 
   @Test
-  public void testSelectStartingLineup() {
+  public void testSelectAndGetStartingLineup() {
     team.selectStartingLineup();
-    // The starting lineup should contain 7 players
     String[] startingLineup = team.getStartingLineup().split("\n");
     assertEquals("Starting lineup should contain 7 players", 7, startingLineup.length);
+    assertFalse(team.getStartingLineup().contains("1") || team.getStartingLineup().contains("2") || team.getStartingLineup().contains("3"));
   }
 
   @Test
@@ -104,19 +108,6 @@ public class TeamTest {
     String playerList = team.getPlayerList();
     assertNotNull(playerList);
     assertFalse(playerList.isEmpty());
-    // Checking if the player list string contains details for the first player as a
-    // basic verification
-    assertTrue(playerList.contains(players.get(0).getFirstName()) && playerList.contains(players.get(0).getLastName()));
-  }
-
-  @Test
-  public void testGetStartingLineup() {
-    team.selectStartingLineup();
-    String startingLineup = team.getStartingLineup();
-    assertNotNull(startingLineup);
-    assertFalse(startingLineup.isEmpty());
-    // Since selectStartingLineup is based on skill level, this verifies that a
-    // lineup is chosen but cannot directly assess skill-based selection
-    assertEquals(7, startingLineup.split("\n").length);
+    assertEquals(res, playerList);
   }
 }
