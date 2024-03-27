@@ -1,5 +1,6 @@
 package soccerteam;
-import java.util.Date;
+
+import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,13 +10,30 @@ import org.junit.Test;
  */
 public class PlayerTest {
     private Player player;
+    private LocalDate dateOfBirth = Utils.genBirthDate();
 
     /**
      * Set up for all tests.
      */
     @Before
     public void setUp() {
-        this.player = new Player("John", "Doe", new Date(), Position.FORWARD, 5);
+        this.player = new Player("John", "Doe", dateOfBirth, Position.FORWARD, 5);
+    }
+
+    /**
+     * Test the constructor with invalid age
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testNewPlayerOverAge() {
+        new Player("John", "Doe", LocalDate.now().minusYears(20), Position.FORWARD, 1);
+    }
+
+    /**
+     * Test the constructor with invalid skill level
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testNewPlayerWithIllegalSkillLevel() {
+        new Player("John", "Doe", LocalDate.now().minusYears(10), Position.FORWARD, 6);
     }
 
     /**
@@ -39,7 +57,7 @@ public class PlayerTest {
      */
     @Test
     public void testGetDateOfBirth() {
-        Assert.assertEquals(new Date(), player.getDateOfBirth());
+        Assert.assertEquals(dateOfBirth, player.getDateOfBirth());
     }
 
     /**
@@ -81,9 +99,9 @@ public class PlayerTest {
      */
     @Test
     public void testSetDateOfBirth() {
-        Date date = new Date();
-        player.setDateOfBirth(date);
-        Assert.assertEquals(date, player.getDateOfBirth());
+        LocalDate dateOfBirthNew = dateOfBirth.plusYears(1);
+        player.setDateOfBirth(dateOfBirthNew);
+        Assert.assertEquals(dateOfBirthNew, player.getDateOfBirth());
     }
 
     /**
@@ -127,6 +145,6 @@ public class PlayerTest {
      */
     @Test
     public void testToString() {
-        Assert.assertEquals(player.toString(), "John Doe, Date of birth: " + new Date() + ", Position: FORWARD");
+        Assert.assertEquals(player.toString(), "John Doe, Date of birth: " + dateOfBirth + ", Position: FORWARD");
     }
 }

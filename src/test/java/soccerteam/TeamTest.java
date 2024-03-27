@@ -1,7 +1,6 @@
 package soccerteam;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,10 +21,10 @@ public class TeamTest {
     // Initialize a list of players to use in the tests
     players = new ArrayList<>();
     for (int i = 1; i <= 5; i++) {
-      players.add(new Player("FirstNameGOALIE" + i, "LastNameGOALIE" + i, new Date(), Position.GOALIE, i));
-      players.add(new Player("FirstNameDEFENDER" + i, "LastNameDEFENDER" + i, new Date(), Position.DEFENDER, i));
-      players.add(new Player("FirstNameMIDFIELDER" + i, "LastNameMIDFIELDER" + i, new Date(), Position.DEFENDER, i));
-      players.add(new Player("FirstNameFORWARD" + i, "LastNameFORWARD" + i, new Date(), Position.FORWARD, i));
+      players.add(new Player("FirstNameGOALIE" + i, "LastNameGOALIE" + i, Utils.genBirthDate(), Position.GOALIE, i));
+      players.add(new Player("FirstNameDEFENDER" + i, "LastNameDEFENDER" + i, Utils.genBirthDate(), Position.DEFENDER, i));
+      players.add(new Player("FirstNameMIDFIELDER" + i, "LastNameMIDFIELDER" + i, Utils.genBirthDate(), Position.DEFENDER, i));
+      players.add(new Player("FirstNameFORWARD" + i, "LastNameFORWARD" + i, Utils.genBirthDate(), Position.FORWARD, i));
     }
     team = new Team(20, players);
     StringBuilder playerList = new StringBuilder();
@@ -52,15 +51,15 @@ public class TeamTest {
     assertEquals(res, t.getPlayerList());
     List<Player> players2 = new ArrayList<>();
     for (int i = 1; i <= 5; i++) {
-      players2.add(new Player("FirstNameGOALIE" + i, "LastNameGOALIE" + i, new Date(), Position.GOALIE, i));
-      players2.add(new Player("FirstNameDEFENDER" + i, "LastNameDEFENDER" + i, new Date(), Position.DEFENDER, i));
-      players2.add(new Player("FirstNameMIDFIELDER" + i, "LastNameMIDFIELDER" + i, new Date(), Position.DEFENDER, i));
-      players2.add(new Player("FirstNameFORWARD" + i, "LastNameFORWARD" + i, new Date(), Position.FORWARD, i));
+      players2.add(new Player("FirstNameGOALIE" + i, "LastNameGOALIE" + i, Utils.genBirthDate(), Position.GOALIE, i));
+      players2.add(new Player("FirstNameDEFENDER" + i, "LastNameDEFENDER" + i, Utils.genBirthDate(), Position.DEFENDER, i));
+      players2.add(new Player("FirstNameMIDFIELDER" + i, "LastNameMIDFIELDER" + i, Utils.genBirthDate(), Position.DEFENDER, i));
+      players2.add(new Player("FirstNameFORWARD" + i, "LastNameFORWARD" + i, Utils.genBirthDate(), Position.FORWARD, i));
     }
-    players2.add(new Player("FirstNameGOALIE6", "LastNameGOALIE6", new Date(), Position.GOALIE, 2));
-    players2.add(new Player("FirstNameDEFENDER6", "LastNameDEFENDER6", new Date(), Position.DEFENDER, 2));
-    players2.add(new Player("FirstNameMIDFIELDER6", "LastNameMIDFIELDER6", new Date(), Position.DEFENDER, 2));
-    players2.add(new Player("FirstNameFORWARD6", "LastNameFORWARD6", new Date(), Position.FORWARD, 2));
+    players2.add(new Player("FirstNameGOALIE6", "LastNameGOALIE6", Utils.genBirthDate(), Position.GOALIE, 2));
+    players2.add(new Player("FirstNameDEFENDER6", "LastNameDEFENDER6", Utils.genBirthDate(), Position.DEFENDER, 2));
+    players2.add(new Player("FirstNameMIDFIELDER6", "LastNameMIDFIELDER6", Utils.genBirthDate(), Position.DEFENDER, 2));
+    players2.add(new Player("FirstNameFORWARD6", "LastNameFORWARD6", Utils.genBirthDate(), Position.FORWARD, 2));
     t = new Team(24, players2);
     assertFalse(t.getPlayerList().contains("FirstNameGOALIE1") && t.getPlayerList().contains("LastNameGOALIE1"));
     assertFalse(t.getPlayerList().contains("FirstNameDEFENDER1") && t.getPlayerList().contains("FirstNameDEFENDER1"));
@@ -70,7 +69,7 @@ public class TeamTest {
 
   @Test
   public void testAddPlayer() {
-    Player newPlayer = new Player("New", "Player", new Date(), Position.FORWARD, 5);
+    Player newPlayer = new Player("New", "Player", Utils.genBirthDate(), Position.FORWARD, 5);
     team.addPlayer(newPlayer);
     assertTrue(team.getPlayerList().contains(newPlayer.getFirstName()) && team.getPlayerList().contains(newPlayer.getLastName()));
   }

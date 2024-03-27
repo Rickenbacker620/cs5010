@@ -1,6 +1,6 @@
 package soccerteam;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Class that describe a player
@@ -8,20 +8,32 @@ import java.util.Date;
 public class Player {
   private String firstName;
   private String lastName;
-  private Date dateOfBirth;
+  private LocalDate dateOfBirth;
   private Position preferredPosition;
   private int skillLevel;
   private int jerseyNumber;
 
   /**
    * Constructor.
-   * @param firstName is the first name of the player.
-   * @param lastName is the last name of the player.
-   * @param dateOfBirth is the date of birth of the player.
+   *
+   * @param firstName         is the first name of the player.
+   * @param lastName          is the last name of the player.
+   * @param dateOfBirth       is the date of birth of the player.
    * @param preferredPosition is the preferred position of the player.
-   * @param skillLevel is the skill level of the player.
+   * @param skillLevel        is the skill level of the player.
+   * @throws IllegalArgumentException if the player is older than 10 years old or
+   *                                  the skill level is not between 1 and 5.
    */
-  public Player(String firstName, String lastName, Date dateOfBirth, Position preferredPosition, int skillLevel) {
+  public Player(String firstName, String lastName, LocalDate dateOfBirth, Position preferredPosition, int skillLevel)
+      throws IllegalArgumentException {
+    if (skillLevel < 1 || skillLevel > 5) {
+      throw new IllegalArgumentException("Skill level must be between 1 and 5");
+    }
+
+    if (dateOfBirth.plusYears(10).isBefore(LocalDate.now())) {
+      throw new IllegalArgumentException("Player must be under 10 years old");
+    }
+
     this.firstName = firstName;
     this.lastName = lastName;
     this.dateOfBirth = dateOfBirth;
@@ -31,6 +43,7 @@ public class Player {
 
   /**
    * Get the first name of the player.
+   *
    * @return the first name of the player.
    */
   public String getFirstName() {
@@ -39,6 +52,7 @@ public class Player {
 
   /**
    * Set the first name of the player.
+   *
    * @param firstName is the first name of the player.
    */
   public void setFirstName(String firstName) {
@@ -47,6 +61,7 @@ public class Player {
 
   /**
    * Get the last name of the player.
+   *
    * @return the last name of the player.
    */
   public String getLastName() {
@@ -55,6 +70,7 @@ public class Player {
 
   /**
    * Set the last name of the player.
+   *
    * @param lastName is the last name of the player.
    */
   public void setLastName(String lastName) {
@@ -63,22 +79,29 @@ public class Player {
 
   /**
    * Get the date of birth of the player.
+   *
    * @return the date of birth of the player.
    */
-  public Date getDateOfBirth() {
+  public LocalDate getDateOfBirth() {
     return dateOfBirth;
   }
 
   /**
    * Set the date of birth of the player.
+   *
    * @param dateOfBirth is the date of birth of the player.
+   * @throws IllegalArgumentException if the player is less than 10 years old.
    */
-  public void setDateOfBirth(Date dateOfBirth) {
+  public void setDateOfBirth(LocalDate dateOfBirth) throws IllegalArgumentException {
+    if (dateOfBirth.plusYears(10).isBefore(LocalDate.now())) {
+      throw new IllegalArgumentException("Player must be at least 10 years old");
+    }
     this.dateOfBirth = dateOfBirth;
   }
 
   /**
    * Get the preferred position of the player.
+   *
    * @return the preferred position of the player.
    */
   public Position getPreferredPosition() {
@@ -87,6 +110,7 @@ public class Player {
 
   /**
    * Set the preferred position of the player.
+   *
    * @param preferredPosition is the preferred position of the player.
    */
   public void setPreferredPosition(Position preferredPosition) {
@@ -95,6 +119,7 @@ public class Player {
 
   /**
    * Get the skill level of the player.
+   *
    * @return the skill level of the player.
    */
   public int getSkillLevel() {
@@ -103,6 +128,7 @@ public class Player {
 
   /**
    * Set the skill level of the player.
+   *
    * @param sillLevel is the skill level of the player.
    */
   public void setSkillLevel(int sillLevel) {
@@ -111,6 +137,7 @@ public class Player {
 
   /**
    * Get the jersey number of the player.
+   *
    * @return the jersey number of the player.
    */
   public int getJerseyNumber() {
@@ -119,6 +146,7 @@ public class Player {
 
   /**
    * Set the jersey number of the player.
+   *
    * @param jerseyNumber is the jersey number of the player.
    */
   public void setJerseyNumber(int jerseyNumber) {
@@ -127,6 +155,7 @@ public class Player {
 
   /**
    * Return the player's information.
+   *
    * @return the player's information.
    */
   @Override

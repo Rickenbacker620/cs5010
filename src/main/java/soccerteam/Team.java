@@ -142,4 +142,31 @@ public class Team {
     }
     return playerList.toString();
   }
+
+  /**
+   * DemEnstration of how to use the Team class
+   *
+   * @param args
+   */
+  public static void main(String[] args) {
+    ArrayList<Player> players = new ArrayList<>();
+    players.add(new Player("Player", "1", Utils.genBirthDate(), Position.FORWARD, 1));
+    players.add(new Player("Player", "2", Utils.genBirthDate(), Position.FORWARD, 2));
+    players.add(new Player("Player", "3", Utils.genBirthDate(), Position.GOALIE, 3));
+    players.add(new Player("Player", "4", Utils.genBirthDate(), Position.MIDFIELDER, 4));
+    players.add(new Player("Player", "5", Utils.genBirthDate(), Position.MIDFIELDER, 5));
+    players.add(new Player("Player", "6", Utils.genBirthDate(), Position.DEFENDER, 1));
+    players.add(new Player("Player", "7", Utils.genBirthDate(), Position.DEFENDER, 2));
+    players.add(new Player("Player", "8", Utils.genBirthDate(), Position.DEFENDER, 3));
+    players.add(new Player("Player", "9", Utils.genBirthDate(), Position.DEFENDER, 4));
+    players.add(new Player("Player", "10", Utils.genBirthDate(), Position.DEFENDER, 5));
+    players.add(new Player("Player", "11", Utils.genBirthDate(), Position.DEFENDER, 1));
+
+    Team team = new Team(11, players);
+
+    team.generateJerseyNumber();
+    team.selectStartingLineup();
+    String startingLineup = team.getStartingLineup();
+    System.out.println(startingLineup);
+  }
 }
