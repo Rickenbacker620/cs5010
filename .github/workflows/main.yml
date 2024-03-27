@@ -30,7 +30,7 @@ jobs:
           cp -r src/test/java bundle/test
           cp -r target/*.jar bundle/res
           cp UML.pdf bundle/res
-          zip -r bundle.zip bundle/*
+          zip -r bundle.zip bundle/src bundle/test bundle/res
 
       - name: Release
         uses: softprops/action-gh-release@v2
