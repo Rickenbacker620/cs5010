@@ -46,12 +46,11 @@ public class Team {
    * @param player input player to be added
    */
   public void addPlayer(Player player) {
-    if (activePlayers.size() < 7) {
-      activePlayers.add(player);
-    } else {
-      benchPlayers.add(player);
-    }
     players.add(player);
+    this.players.sort(Comparator.comparingInt(Player::getSkillLevel).reversed());
+    this.players = players.subList(0, 20);
+
+    selectStartingLineup();
   }
 
   /**
