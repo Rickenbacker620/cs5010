@@ -2,10 +2,11 @@ package soccerteam;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 public class PlayerController {
   private SoccerTeamView view;
-
+  private List<Player> candidatePlayers;
   public PlayerController(SoccerTeamView view) {
     this.view = view;
   }
@@ -22,8 +23,7 @@ public class PlayerController {
     }
     try {
       Player newPlayer = new Player(firstName, lastName, dateOfBirth, preferredPosition, skillLevel);
-//      TODO
-//      this.team.addPlayer(newPlayer);
+      candidatePlayers.add(newPlayer);
       view.displayMessage("Player added successfully!");
     }catch (IllegalArgumentException e) {
       view.displayError("Failed to add player: " + e.getMessage());
