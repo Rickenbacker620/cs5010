@@ -4,11 +4,9 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class PlayerController {
-  private Team team;
   private SoccerTeamView view;
 
-  public PlayerController(Team team, SoccerTeamView view) {
-    this.team = team;
+  public PlayerController(SoccerTeamView view) {
     this.view = view;
   }
 
@@ -24,29 +22,11 @@ public class PlayerController {
     }
     try {
       Player newPlayer = new Player(firstName, lastName, dateOfBirth, preferredPosition, skillLevel);
-      this.team.addPlayer(newPlayer);
+//      TODO
+//      this.team.addPlayer(newPlayer);
       view.displayMessage("Player added successfully!");
     }catch (IllegalArgumentException e) {
       view.displayError("Failed to add player: " + e.getMessage());
-    }
-  }
-
-  public void displayAllPlayers() {
-    String allPlayers = team.getPlayerList();
-    if (allPlayers.isEmpty()) {
-      view.displayError("No players in the team.");
-    } else {
-      view.displayPlayers(allPlayers);
-    }
-  }
-
-  // This method returns the starting lineup
-  public void displayStartingLineup() {
-    String lineup = team.getStartingLineup();
-    if (lineup.isEmpty()) {
-      view.displayError("Starting lineup has not been set.");
-    } else {
-      view.displayStartingLineup(lineup);
     }
   }
 }

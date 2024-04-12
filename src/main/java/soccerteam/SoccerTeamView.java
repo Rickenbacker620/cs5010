@@ -9,8 +9,8 @@ public class SoccerTeamView extends JFrame {
   private JTextArea outputArea;
   private TeamController controller;
 
-  public SoccerTeamView(TeamController controller) {
-    this.controller = controller;
+  public SoccerTeamView() {
+//    this.controller = controller;
     initComponents();
   }
 
@@ -43,9 +43,7 @@ public class SoccerTeamView extends JFrame {
     outputArea.setText(players);
   }
 
-  public static void main(String[] args) {
-    SwingUtilities.invokeLater(() -> {
-      TeamController controller = new TeamController(new SoccerTeamView(controller));
-    });
+  public void displayStartingLineup(String players) {
+    outputArea.setText(players);
   }
 }

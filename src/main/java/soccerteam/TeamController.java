@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TeamController {
   private Team team;
@@ -14,33 +15,41 @@ public class TeamController {
     this.view = view;
   }
 
-  public void addPlayer(String firstName, String lastName, String dob, String position, int skillLevel) {
+  public void addPlayer(Player p) {
     try {
-      LocalDate dateOfBirth = LocalDate.parse(dob, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-      Position preferredPosition = Position.valueOf(position.toUpperCase());
-      Player newPlayer = new Player(firstName, lastName, dateOfBirth, preferredPosition, skillLevel);
-      team.addPlayer(newPlayer);
+      team.addPlayer(p);
       view.displayMessage("Player added successfully!");
     } catch (IllegalArgumentException e) {
       view.displayError("Failed to add player: " + e.getMessage());
     }
   }
 
-  public void createTeam() {
-    if (team.getPlayers().size() < 11) {
-      view.displayError("Not enough players to create a team.");
-      return;
+  public void createTeam(List<Player> players) {
+    try {
+      team = new Team(players.size(), players);
+      team.generateJerseyNumber();
+      team.selectStartingLineup();
+      view.displayMessage("Team created successfully!");
+    } catch (IllegalArgumentException e) {
+      view.displayError("Failed to add create team: " + e.getMessage());
     }
-    team.generateJerseyNumber();
-    team.selectStartingLineup();
-    view.displayMessage("Team created successfully!");
   }
 
   public void showTeamPlayers() {
-    view.displayPlayers(team.getPlayerList());
+    String allPlayers = team.getPlayerList();
+    if (allPlayers.isEmpty()) {
+      view.displayError("No players in the team.");
+    } else {
+      view.displayPlayers(allPlayers);
+    }
   }
 
   public void showStartingLineup() {
-    view.displayPlayers(team.getStartingLineup());
+    String lineup = team.getStartingLineup();
+    if (lineup.isEmpty()) {
+      view.displayError("Starting lineup has not been set.");
+    } else {
+      view.displayStartingLineup(lineup);
+    }
   }
 }
