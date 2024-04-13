@@ -1,49 +1,64 @@
 package soccerteam;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
-public class SoccerTeamView extends JFrame {
-  private JTextField firstNameField, lastNameField, dobField, positionField, skillLevelField;
-  private JTextArea outputArea;
-  private TeamController controller;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+
+public class SoccerTeamView extends JPanel {
+  private AddPlayerView addPlayerView = new AddPlayerView();
+  private PlayerListView playerListView = new PlayerListView();
+  private TeamInfoView teamInfoView = new TeamInfoView();
 
   public SoccerTeamView() {
-//    this.controller = controller;
-    initComponents();
-  }
+    setLayout(new GridLayout(1, 3, 5, 5));
 
-  private void initComponents() {
-    // Initialize components (text fields, buttons, etc.) and set up the GUI layout
-    // Add action listeners to buttons to call controller methods
+    add(addPlayerView);
+    add(playerListView);
+    add(teamInfoView);
 
-    setTitle("U10 Soccer Team Manager");
-    setSize(400, 600);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLayout(new BorderLayout());
-
-    // Assuming JButton for adding a player, creating a team, showing team players, and the starting lineup
-    // JTextField for player input, JTextArea for output
+    addPlayerView.onAddPlayerButtonClicked(e -> {
+      Player player = addPlayerView.getPlayer();
+      playerListView.addPlayer(player);
+      addPlayerView.clearFields();
+    });
 
     setVisible(true);
   }
 
-  // Methods to display messages and errors
-  public void displayMessage(String message) {
-    JOptionPane.showMessageDialog(this, message);
-  }
-
   public void displayError(String message) {
-    JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
   }
 
-  // Method to display players
-  public void displayPlayers(String players) {
-    outputArea.setText(players);
+  public void displayMessage(String message) {
+    JOptionPane.showMessageDialog(null, message, "Message", JOptionPane.INFORMATION_MESSAGE);
   }
 
-  public void displayStartingLineup(String players) {
-    outputArea.setText(players);
+  public void onGetTeamMembersButtonClicked(ActionListener listener) {
+    teamInfoView.onGetTeamMembersButtonClicked(listener);
+  }
+
+  public void onShowStartingLineUpButtonClicked(ActionListener listener) {
+    teamInfoView.onShowStartingLineUpButtonClicked(listener);
+  }
+
+  public void showInfo(String info) {
+    teamInfoView.showInfo(info);
+  }
+
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("Soccer Team Management");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(1200, 600);
+    frame.setLocationRelativeTo(null);
+
+    SoccerTeamView soccerTeamView = new SoccerTeamView();
+    frame.add(soccerTeamView);
+    soccerTeamView.onGetTeamMembersButtonClicked(e -> soccerTeamView.showInfo("Team Members: John Doe, Jane Doe, ..."));
+    soccerTeamView.onShowStartingLineUpButtonClicked(e -> soccerTeamView.showInfo("Starting Lineup: John Doe, Jane Doe, ..."));
+
+    frame.setVisible(true);
   }
 }
