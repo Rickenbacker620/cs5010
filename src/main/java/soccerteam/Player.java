@@ -160,6 +160,6 @@ public class Player {
    */
   @Override
   public String toString() {
-    return firstName + " " + lastName + ", Date of birth: " + dateOfBirth + ", Position: " + preferredPosition;
+    return firstName + " " + lastName + ", Date of birth: " + dateOfBirth + ", Position: " + preferredPosition+", Skill Level: "+skillLevel;
   }
 }
