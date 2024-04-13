@@ -17,6 +17,8 @@ public class MainFrame extends JFrame {
 
     new TeamController(view);
 
+    add(view);
+
     setVisible(true);
   }
 
