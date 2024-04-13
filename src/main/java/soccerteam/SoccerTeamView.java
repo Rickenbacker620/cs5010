@@ -20,12 +20,6 @@ public class SoccerTeamView extends JPanel {
     add(playerListView);
     add(teamInfoView);
 
-    addPlayerView.onAddPlayerButtonClicked(e -> {
-      Player player = addPlayerView.getPlayer();
-      playerListView.addPlayer(player);
-      addPlayerView.clearFields();
-    });
-
     setVisible(true);
   }
 
@@ -47,6 +41,22 @@ public class SoccerTeamView extends JPanel {
 
   public void onTeamUpButtonClicked(ActionListener listener) {
     playerListView.onTeamUpButtonClicked(listener);
+  }
+
+  public void onAddPlayerButtonClicked(ActionListener listener) {
+    addPlayerView.onAddPlayerButtonClicked(listener);
+  }
+
+  public Object[] getPlayer(){
+    return addPlayerView.getPlayer();
+  }
+
+  public void clearFields(){
+    addPlayerView.clearFields();
+  }
+
+  public void addPlayer(Player p){
+    playerListView.addPlayer(p);
   }
 
   public void showInfo(String info) {

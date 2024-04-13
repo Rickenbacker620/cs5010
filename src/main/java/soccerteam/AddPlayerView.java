@@ -39,14 +39,9 @@ public class AddPlayerView extends JPanel {
    *
    * @return Player object
    */
-  public Player getPlayer() {
-    String firstName = firstNameField.getText();
-    String lastName = lastNameField.getText();
-    String dobRaw = dobField.getText();
-    LocalDate dob = LocalDate.parse(dobRaw);
-    Position position = (Position) positionSelector.getSelectedItem();
-    int skillLevel = Integer.parseInt(skillLevelField.getText());
-    return new Player(firstName, lastName, dob, position, skillLevel);
+  public Object[] getPlayer() {
+    return new Object[] {firstNameField.getText(), lastNameField.getText(), dobField.getText(),
+            positionSelector.getSelectedItem(), skillLevelField.getText()};
   }
 
   /**
@@ -77,16 +72,6 @@ public class AddPlayerView extends JPanel {
     frame.setLocationRelativeTo(null);
 
     AddPlayerView addPlayerView = new AddPlayerView();
-    addPlayerView.onAddPlayerButtonClicked(e -> {
-      Player player;
-      try {
-        player = addPlayerView.getPlayer();
-      } catch (Exception ex) {
-        return;
-      }
-      System.out.println(player);
-      addPlayerView.clearFields();
-    });
     frame.add(addPlayerView);
 
     frame.setVisible(true);
