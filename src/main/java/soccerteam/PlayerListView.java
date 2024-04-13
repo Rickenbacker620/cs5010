@@ -12,6 +12,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import java.util.List;
 
 public class PlayerListView extends JPanel {
   private DefaultListModel<Player> playerListModel = new DefaultListModel<>();
@@ -32,6 +33,10 @@ public class PlayerListView extends JPanel {
 
   public void onTeamUpButtonClicked(ActionListener listener) {
     teamUpButton.addActionListener(listener);
+  }
+
+  public List<Player> getSelectedPlayers() {
+    return playerList.getSelectedValuesList();
   }
 
   // FIXME Temporarily added for testing purposes
@@ -69,7 +74,7 @@ public class PlayerListView extends JPanel {
     });
 
     playerListView.onTeamUpButtonClicked(e -> {
-
+      playerListView.getSelectedPlayers().forEach(player -> System.out.println(player));
     });
   }
 

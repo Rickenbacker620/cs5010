@@ -2,6 +2,7 @@ package soccerteam;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -46,6 +47,10 @@ public class SoccerTeamView extends JPanel {
 
   public void showInfo(String info) {
     teamInfoView.showInfo(info);
+  }
+
+  public List<Player> getSelectedPlayers() {
+    return playerListView.getSelectedPlayers();
   }
 
   public static void main(String[] args) {
