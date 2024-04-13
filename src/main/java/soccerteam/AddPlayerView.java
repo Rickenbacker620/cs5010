@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class AddPlayerView extends JPanel {
   private JTextField firstNameField = new JTextField(20);
@@ -12,6 +13,7 @@ public class AddPlayerView extends JPanel {
   private JComboBox<Position> positionSelector = new JComboBox<>(Position.values());
   private JTextField skillLevelField = new JTextField(20);
   private JButton addPlayerButton = new JButton("Add Player");
+  private PlayerController playerController;
 
   /**
    * Constructor to create an AddPlayerView object.
@@ -43,7 +45,8 @@ public class AddPlayerView extends JPanel {
     String firstName = firstNameField.getText();
     String lastName = lastNameField.getText();
     String dobRaw = dobField.getText();
-    LocalDate dob = LocalDate.parse(dobRaw);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    LocalDate dob = LocalDate.parse(dobRaw, formatter);
     Position position = (Position) positionSelector.getSelectedItem();
     int skillLevel = Integer.parseInt(skillLevelField.getText());
     return new Player(firstName, lastName, dob, position, skillLevel);
