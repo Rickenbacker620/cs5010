@@ -6,9 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame {
-  private AddPlayerView addPlayerView = new AddPlayerView();
-  private PlayerListView playerListView = new PlayerListView();
-  private TeamInfoView teamInfoView = new TeamInfoView();
+  private SoccerTeamView view = new SoccerTeamView();
 
   public MainFrame() {
     setTitle("Soccer Team Manager");
@@ -17,16 +15,13 @@ public class MainFrame extends JFrame {
     setLocationRelativeTo(null);
     setLayout(new GridLayout(1, 3, 5, 5));
 
-    new TeamController(addPlayerView, playerListView, teamInfoView);
-
-    add(addPlayerView);
-    add(playerListView);
-    add(teamInfoView);
+    new TeamController(view);
 
     setVisible(true);
   }
 
   public static void main(String[] args) {
+    new MainFrame();
   }
 
 }

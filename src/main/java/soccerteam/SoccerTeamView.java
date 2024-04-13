@@ -45,6 +45,10 @@ public class SoccerTeamView extends JPanel {
     teamInfoView.onShowStartingLineUpButtonClicked(listener);
   }
 
+  public void onTeamUpButtonClicked(ActionListener listener) {
+    playerListView.onTeamUpButtonClicked(listener);
+  }
+
   public void showInfo(String info) {
     teamInfoView.showInfo(info);
   }
