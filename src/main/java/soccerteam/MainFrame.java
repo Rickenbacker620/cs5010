@@ -1,7 +1,6 @@
 package soccerteam;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
@@ -15,7 +14,7 @@ public class MainFrame extends JFrame {
     setLocationRelativeTo(null);
     setLayout(new GridLayout(1, 3, 5, 5));
 
-    new TeamController(view);
+    new SoccerTeamController(view);
 
     add(view);
 
@@ -25,5 +24,4 @@ public class MainFrame extends JFrame {
   public static void main(String[] args) {
     new MainFrame();
   }
-
 }

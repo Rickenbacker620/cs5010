@@ -62,17 +62,6 @@ public class PlayerListView extends JPanel {
 
     frame.setVisible(true);
 
-    addPlayerView.onAddPlayerButtonClicked(e -> {
-      Player player;
-      try {
-        player = addPlayerView.getPlayer();
-      } catch (Exception ex) {
-        return;
-      }
-      playerListView.addPlayer(player);
-      addPlayerView.clearFields();
-    });
-
     playerListView.onTeamUpButtonClicked(e -> {
       playerListView.getSelectedPlayers().forEach(player -> System.out.println(player));
     });
