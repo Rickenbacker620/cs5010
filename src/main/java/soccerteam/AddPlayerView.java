@@ -3,7 +3,6 @@ package soccerteam;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 
 public class AddPlayerView extends JPanel {
   private JTextField firstNameField = new JTextField(20);
