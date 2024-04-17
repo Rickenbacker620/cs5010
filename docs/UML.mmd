@@ -21,13 +21,6 @@ classDiagram
         + setJerseyNumber(jerseyNumber: int) void
         + toString() String
     }
-    class Position {
-        <<enumeration>>
-        GOALIE
-        DENFENDER
-        MIDFIELDER
-        FORWARD
-    }
     class Team {
         - activePlayer: List~Player~
         - benchPlayer: List~Player~
@@ -39,5 +32,82 @@ classDiagram
         + getPlayersList() String
         + getStartingLineup() String
     }
-    Player "1..*" *-- "1" Team
+    class Position {
+        <<enumeration>>
+        GOALIE
+        DENFENDER
+        MIDFIELDER
+        FORWARD
+    }
+    class SoccerTeamController {
+        - Team team
+        - SoccerTeamView view
+        - GetTeamListener getTeamListener
+        - GetStartLineListener getStartLineListener
+        - TeamUpListener teamUpListener
+        - AddPlayerListener addPlayerListener
+        - List~Player~ candidatePlayers
+        + SoccerTeamController(SoccerTeamView soccerTeamView)
+    }
+    class TeamInfoView {
+        - JTextArea infoPanel
+        - JPanel buttonPanel
+        - JButton getTeamMembersButton
+        - JButton getStartingLineUpButton
+        + void onGetTeamMembersButtonClicked(ActionListener listener)
+        + void onShowStartingLineUpButtonClicked(ActionListener listener)
+        + void showInfo(String info)
+    }
+    class AddPlayerView {
+        - JTextField firstNameField
+        - JTextField lastNameField
+        - JTextField dobField
+        - JComboBox~Position~ positionSelector
+        - JTextField skillLevelField
+        - JButton addPlayerButton
+        + Object[] getPlayer()
+        + void clearFields()
+        + void onAddPlayerButtonClicked(ActionListener listener)
+    }
+    class TeamInfoView {
+        - JTextArea infoPanel
+        - JPanel buttonPanel
+        - JButton getTeamMembersButton
+        - JButton getStartingLineUpButton
+        + void onGetTeamMembersButtonClicked(ActionListener listener)
+        + void onShowStartingLineUpButtonClicked(ActionListener listener)
+        + void showInfo(String info)
+    }
+    class PlayerListView {
+        - DefaultListModel<Player> playerListModel
+        - JList<Player> playerList
+        - JScrollPane scrollPane
+        - JButton teamUpButton
+        + void addPlayer(Player player)
+        + void onTeamUpButtonClicked(ActionListener listener)
+        + List~Player~ getSelectedPlayers()
+        + Player generateMockPlayer()
+    }
+    class SoccerTeamView {
+        - AddPlayerView addPlayerView
+        - PlayerListView playerListView
+        - TeamInfoView teamInfoView
+        + void displayError(String message)
+        + void displayMessage(String message)
+        + void onGetTeamMembersButtonClicked(ActionListener listener)
+        + void onShowStartingLineUpButtonClicked(ActionListener listener)
+        + void onTeamUpButtonClicked(ActionListener listener)
+        + void onAddPlayerButtonClicked(ActionListener listener)
+        + Object[] getPlayer()
+        + void clearFields()
+        + void addPlayer(Player p)
+        + void showInfo(String info)
+        + List~Player~ getSelectedPlayers()
+    }
+    Player "1..*" --* "1" Team
     Player "1" *-- "0..1" Position
+    SoccerTeamView "1" *-- "1" AddPlayerView
+    SoccerTeamView "1" *-- "1" PlayerListView
+    SoccerTeamView "1" *-- "1" TeamInfoView
+    SoccerTeamController "1" *-- "1" SoccerTeamView
+    SoccerTeamController "1" *-- "1" Team
