@@ -31,8 +31,9 @@ public class TeamTest {
     team = new Team(20, players);
     StringBuilder playerList = new StringBuilder();
     for (Player player : players) {
-      playerList.append(player.getFirstName()).append(" ").append(player.getLastName()).append(" ")
-          .append(player.getJerseyNumber()).append("\n");
+      String playerInfo = String.format("Name: %s %s, Jersey Number: %d\n", player.getFirstName(), player.getLastName(),
+          player.getJerseyNumber());
+      playerList.append(playerInfo);
     }
     res = playerList.toString();
   }
