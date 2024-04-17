@@ -64,6 +64,9 @@ public class PlayerListView extends JPanel {
 
     playerListView.onTeamUpButtonClicked(e -> {
       playerListView.getSelectedPlayers().forEach(player -> System.out.println(player));
+      List<Player> selectedPlayers = playerListView.getSelectedPlayers();
+      Team team = new Team(selectedPlayers.size(), selectedPlayers);
+      System.out.println(team.getStartingLineup());
     });
   }
 

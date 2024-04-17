@@ -120,8 +120,9 @@ public class Team {
   public String getPlayerList() {
     StringBuilder playerList = new StringBuilder();
     for (Player player : players) {
-      playerList.append(player.getFirstName()).append(" ").append(player.getLastName()).append(" ")
-          .append(player.getJerseyNumber()).append("\n");
+      String playerInfo = String.format("Name: %s %s, Jersey Number: %d\n", player.getFirstName(), player.getLastName(),
+          player.getJerseyNumber());
+      playerList.append(playerInfo);
     }
     return playerList.toString();
   }
@@ -136,8 +137,9 @@ public class Team {
   public String getStartingLineup() {
     StringBuilder playerList = new StringBuilder();
     for (Player player : activePlayers) {
-      playerList.append(player.getFirstName()).append(" ").append(player.getLastName()).append(" ")
-          .append(player.getJerseyNumber()).append("\n");
+      String playerInfo = String.format("Name: %s %s, Jersey Number: %d, Position: %s\n", player.getFirstName(),
+          player.getLastName(), player.getJerseyNumber(), player.getPreferredPosition());
+      playerList.append(playerInfo);
     }
     return playerList.toString();
   }

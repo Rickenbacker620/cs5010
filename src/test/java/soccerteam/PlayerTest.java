@@ -145,6 +145,6 @@ public class PlayerTest {
    */
   @Test
   public void testToString() {
-    Assert.assertEquals(player.toString(), "John Doe, Date of birth: " + dateOfBirth + ", Position: FORWARD");
+    Assert.assertEquals("John Doe, Date of birth: " + dateOfBirth + ", Position: FORWARD, Skill Level: 5", player.toString());
   }
 }
