@@ -82,7 +82,24 @@ public class SoccerTeamController {
     @Override
     public void actionPerformed(ActionEvent e) {
       try {
-        List<Player> players = view.getSelectedPlayers();
+        List<Object[]> playersInfo = view.getSelectedPlayers();
+        List<Player> players = new ArrayList<Player>();
+        for (Object[] info: playersInfo) {
+          String firstName = (String) info[0];
+          String lastName = (String) info[1];
+          LocalDate dateOfBirth = LocalDate.parse((String) info[2]);
+          Position preferredPosition = (Position) info[3];
+          int skillLevel = Integer.parseInt((String) info[4]);
+          for (Player player: candidatePlayers) {
+            if (firstName.equals(player.getFirstName()) && lastName.equals(player.getLastName()) &&
+                    dateOfBirth.equals(player.getDateOfBirth()) &&
+                    preferredPosition.equals(player.getPreferredPosition()) &&
+                    skillLevel == player.getSkillLevel()) {
+              players.add(player);
+              break;
+            }
+          }
+        }
         team = new Team(players.size(), players);
         team.generateJerseyNumber();
         team.selectStartingLineup();
@@ -118,7 +135,9 @@ public class SoccerTeamController {
 
         Player newPlayer = new Player(firstName, lastName, dateOfBirth, preferredPosition, skillLevel);
         candidatePlayers.add(newPlayer);
-        view.addPlayer(newPlayer);
+        view.addPlayer(new Object[] {newPlayer.getFirstName(), newPlayer.getLastName(),
+                newPlayer.getDateOfBirth(), newPlayer.getPreferredPosition(),
+                newPlayer.getSkillLevel()});
         view.displayMessage("Player added successfully!");
         view.clearFields();
       } catch (DateTimeException ex) {

@@ -55,7 +55,7 @@ public class SoccerTeamView extends JPanel {
     addPlayerView.clearFields();
   }
 
-  public void addPlayer(Player p){
+  public void addPlayer(Object[] p){
     playerListView.addPlayer(p);
   }
 
