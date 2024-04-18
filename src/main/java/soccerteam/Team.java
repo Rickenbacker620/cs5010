@@ -16,6 +16,8 @@ public class Team {
   private List<Player> activePlayers = new ArrayList<>();
   private List<Player> benchPlayers = new ArrayList<>();
   private List<Player> players = new ArrayList<>();
+  private final int TEAM_SIZE_MIN = 10;
+  private final int TEAM_SIZE_MAX = 20;
 
   /**
    * Constructor of the class. Initialize the size and players. Throw exception
@@ -28,13 +30,13 @@ public class Team {
    *                                  20
    */
   public Team(int size, List<Player> players) throws IllegalArgumentException {
-    if (players.size() < 10) {
+    if (players.size() < TEAM_SIZE_MIN) {
       throw new IllegalArgumentException("A team must have at least 10 players");
     }
-    if (players.size() > 20) {
+    if (players.size() > TEAM_SIZE_MAX) {
       // lowest skill level players are removed if team size is bigger than 20
       players.sort(Comparator.comparingInt(Player::getSkillLevel).reversed());
-      this.players = players.subList(0, 20);
+      this.players = players.subList(0, TEAM_SIZE_MAX);
     } else {
       this.players = players;
     }
@@ -48,7 +50,7 @@ public class Team {
   public void addPlayer(Player player) {
     players.add(player);
     this.players.sort(Comparator.comparingInt(Player::getSkillLevel).reversed());
-    this.players = players.subList(0, 20);
+    this.players = players.subList(0, TEAM_SIZE_MAX);
 
     selectStartingLineup();
   }
@@ -62,7 +64,7 @@ public class Team {
     for (Player player : players) {
       int jerseyNumber;
       do {
-        jerseyNumber = random.nextInt(20) + 1;
+        jerseyNumber = random.nextInt(TEAM_SIZE_MAX) + 1;
       } while (!assignJerseyNumbers.add(jerseyNumber));
       player.setJerseyNumber(jerseyNumber);
     }
