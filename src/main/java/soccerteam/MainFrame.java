@@ -4,6 +4,9 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
+/**
+ * MainFrame class.
+ */
 public class MainFrame extends JFrame {
   private SoccerTeamView view = new SoccerTeamView();
 

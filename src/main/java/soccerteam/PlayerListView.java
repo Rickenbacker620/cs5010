@@ -14,12 +14,18 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import java.util.List;
 
+/**
+ * PlayerListView class.
+ */
 public class PlayerListView extends JPanel {
   private DefaultListModel<String> playerListModel = new DefaultListModel<>();
   private JList<String> playerList = new JList<>(playerListModel);
   private JScrollPane scrollPane = new JScrollPane(playerList);
   private JButton teamUpButton = new JButton("Team Up");
 
+  /**
+   * Constructor to create a PlayerListView object.
+   */
   public PlayerListView() {
     setLayout(new GridLayout(2, 1, 5, 5));
     add(scrollPane, BorderLayout.NORTH);
@@ -27,47 +33,27 @@ public class PlayerListView extends JPanel {
     playerList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
   }
 
+  /**
+   * Add a player to the player list.
+   * @param player
+   */
   public void addPlayer(String player) {
     playerListModel.addElement(player);
   }
 
+  /**
+   * Register an action listener for the team up button.
+   * @param listener ActionListener.
+   */
   public void onTeamUpButtonClicked(ActionListener listener) {
     teamUpButton.addActionListener(listener);
   }
 
+  /**
+   * Get the selected players from the player list.
+   * @return List of selected players.
+   */
   public List<String> getSelectedPlayers() {
     return playerList.getSelectedValuesList();
   }
-
-  // // FIXME Temporarily added for testing purposes
-  // public Player generateMockPlayer() {
-  //   return new Player("John", "Doe", LocalDate.now().minusYears(4), Position.FORWARD, 4);
-  // }
-
-  // public static void main(String[] args) {
-  //   JFrame frame = new JFrame("Player List View");
-  //   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  //   frame.setSize(1000, 400);
-  //   frame.setLocationRelativeTo(null);
-  //   frame.setLayout(new GridLayout(1, 2, 5, 5));
-
-  //   PlayerListView playerListView = new PlayerListView();
-  //   AddPlayerView addPlayerView = new AddPlayerView();
-  //   frame.add(addPlayerView);
-  //   frame.add(playerListView);
-
-  //   for (int i = 0; i < 20; i++) {
-  //     playerListView.addPlayer(playerListView.generateMockPlayer());
-  //   }
-
-  //   frame.setVisible(true);
-
-  //   playerListView.onTeamUpButtonClicked(e -> {
-  //     playerListView.getSelectedPlayers().forEach(player -> System.out.println(player));
-  //     List<Player> selectedPlayers = playerListView.getSelectedPlayers();
-  //     Team team = new Team(selectedPlayers.size(), selectedPlayers);
-  //     System.out.println(team.getStartingLineup());
-  //   });
-  // }
-
 }

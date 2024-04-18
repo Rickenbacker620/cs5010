@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * AddPlayerView class.
+ */
 public class AddPlayerView extends JPanel {
   private JTextField firstNameField = new JTextField(20);
   private JTextField lastNameField = new JTextField(20);

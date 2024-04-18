@@ -2,6 +2,9 @@ package soccerteam;
 
 import java.time.LocalDate;
 
+/**
+ * Utility class for the project.
+ */
 public class Utils {
   // Generate a random birth date for a player between 0 and 10 years old
   public static LocalDate genBirthDate() {
