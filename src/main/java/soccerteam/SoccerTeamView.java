@@ -63,7 +63,7 @@ public class SoccerTeamView extends JPanel {
     teamInfoView.showInfo(info);
   }
 
-  public List<Player> getSelectedPlayers() {
+  public List<Object[]> getSelectedPlayers() {
     return playerListView.getSelectedPlayers();
   }
 
