@@ -1,4 +1,5 @@
 classDiagram
+    namespace Model {
     class Player {
         - firstName: String
         - lastName: String
@@ -39,6 +40,8 @@ classDiagram
         MIDFIELDER
         FORWARD
     }
+    }
+    namespace Controller {
     class SoccerTeamController {
         - Team team
         - SoccerTeamView view
@@ -49,6 +52,8 @@ classDiagram
         - List~Player~ candidatePlayers
         + SoccerTeamController(SoccerTeamView soccerTeamView)
     }
+    }
+    namespace View {
     class TeamInfoView {
         - JTextArea infoPanel
         - JPanel buttonPanel
@@ -69,23 +74,14 @@ classDiagram
         + void clearFields()
         + void onAddPlayerButtonClicked(ActionListener listener)
     }
-    class TeamInfoView {
-        - JTextArea infoPanel
-        - JPanel buttonPanel
-        - JButton getTeamMembersButton
-        - JButton getStartingLineUpButton
-        + void onGetTeamMembersButtonClicked(ActionListener listener)
-        + void onShowStartingLineUpButtonClicked(ActionListener listener)
-        + void showInfo(String info)
-    }
     class PlayerListView {
         - DefaultListModel<Player> playerListModel
-        - JList<Player> playerList
+        - JList~Object[]~ playerList
         - JScrollPane scrollPane
         - JButton teamUpButton
         + void addPlayer(Player player)
         + void onTeamUpButtonClicked(ActionListener listener)
-        + List~Player~ getSelectedPlayers()
+        + List~Object[]~ getSelectedPlayers()
         + Player generateMockPlayer()
     }
     class SoccerTeamView {
@@ -102,7 +98,8 @@ classDiagram
         + void clearFields()
         + void addPlayer(Player p)
         + void showInfo(String info)
-        + List~Player~ getSelectedPlayers()
+        + List~Object[]~ getSelectedPlayers()
+    }
     }
     Player "1..*" --* "1" Team
     Player "1" *-- "0..1" Position
