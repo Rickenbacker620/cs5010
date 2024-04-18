@@ -79,7 +79,7 @@ classDiagram
         - JList~Object[]~ playerList
         - JScrollPane scrollPane
         - JButton teamUpButton
-        + void addPlayer(Player player)
+        + void addPlayer(Object[] player)
         + void onTeamUpButtonClicked(ActionListener listener)
         + List~Object[]~ getSelectedPlayers()
         + Player generateMockPlayer()
@@ -96,7 +96,7 @@ classDiagram
         + void onAddPlayerButtonClicked(ActionListener listener)
         + Object[] getPlayer()
         + void clearFields()
-        + void addPlayer(Player p)
+        + void addPlayer(Object[] p)
         + void showInfo(String info)
         + List~Object[]~ getSelectedPlayers()
     }
