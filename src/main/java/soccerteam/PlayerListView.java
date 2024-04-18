@@ -15,8 +15,8 @@ import javax.swing.ListSelectionModel;
 import java.util.List;
 
 public class PlayerListView extends JPanel {
-  private DefaultListModel<Object[]> playerListModel = new DefaultListModel<>();
-  private JList<Object[]> playerList = new JList<>(playerListModel);
+  private DefaultListModel<String> playerListModel = new DefaultListModel<>();
+  private JList<String> playerList = new JList<>(playerListModel);
   private JScrollPane scrollPane = new JScrollPane(playerList);
   private JButton teamUpButton = new JButton("Team Up");
 
@@ -27,7 +27,7 @@ public class PlayerListView extends JPanel {
     playerList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
   }
 
-  public void addPlayer(Object[] player) {
+  public void addPlayer(String player) {
     playerListModel.addElement(player);
   }
 
@@ -35,7 +35,7 @@ public class PlayerListView extends JPanel {
     teamUpButton.addActionListener(listener);
   }
 
-  public List<Object[]> getSelectedPlayers() {
+  public List<String> getSelectedPlayers() {
     return playerList.getSelectedValuesList();
   }
 

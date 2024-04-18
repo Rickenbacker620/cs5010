@@ -55,7 +55,7 @@ public class SoccerTeamView extends JPanel {
     addPlayerView.clearFields();
   }
 
-  public void addPlayer(Object[] p){
+  public void addPlayer(String p){
     playerListView.addPlayer(p);
   }
 
@@ -63,7 +63,7 @@ public class SoccerTeamView extends JPanel {
     teamInfoView.showInfo(info);
   }
 
-  public List<Object[]> getSelectedPlayers() {
+  public List<String> getSelectedPlayers() {
     return playerListView.getSelectedPlayers();
   }
 
